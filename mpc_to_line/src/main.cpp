@@ -1,3 +1,18 @@
+/*
+ * @------------------------------------------1: 1------------------------------------------@
+ * @Author: lee-shun
+ * @Email: 2015097272@qq.com
+ * @Date: 2020-07-28 10:41:45
+ * @Organization: BIT-CGNC, fixed_wing_group
+ * @Description:  
+ * @------------------------------------------2: 2------------------------------------------@
+ * @LastEditors: lee-shun
+ * @LastEditors_Email: 2015097272@qq.com
+ * @LastEditTime: 2020-07-28 16:38:49
+ * @LastEditors_Organization: BIT-CGNC, fixed_wing_group
+ * @LastEditors_Description:  
+ * @------------------------------------------3: 3------------------------------------------@
+ */ 
 #include <vector>
 #include "Eigen-3.3/Eigen/QR"
 #include "helpers.h"
@@ -23,7 +38,7 @@ int main() {
   /**
    * TODO: fit a polynomial to the above x and y coordinates
    */
-  auto coeffs = ? ;
+  auto coeffs = polyfit(ptsx, ptsy, 1) ;
 
   // NOTE: free feel to play around with these
   double x = -1;
@@ -33,11 +48,11 @@ int main() {
   /**
    * TODO: calculate the cross track error
    */
-  double cte = ? ;
+  double cte = polyeval(coeffs, x) - y ;
   /**
    * TODO: calculate the orientation error
    */
-  double epsi = ? ;
+  double epsi = psi - atan(coeffs[1]) ;
 
   VectorXd state(6);
   state << x, y, psi, v, cte, epsi;
